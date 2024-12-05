@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   FaUsers,
   FaCommentAlt,
@@ -10,9 +10,40 @@ import {
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
+  // State to manage sidebar visibility
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Ref to reference the sidebar
+  const sidebarRef = useRef(null);
+
+  // Toggle the sidebar visibility
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Close sidebar if clicking outside of it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <div>
       <button
+        onClick={toggleSidebar}
         data-drawer-target="logo-sidebar"
         data-drawer-toggle="logo-sidebar"
         aria-controls="logo-sidebar"
@@ -36,15 +67,15 @@ const SideBar = () => {
       </button>
 
       <aside
+        ref={sidebarRef}
         id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } sm:translate-x-0`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-          <a
-            // href="https://flowbite.com/"
-            className="flex items-center ps-2.5 mb-5"
-          >
+          <a className="flex items-center ps-2.5 mb-5">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
               className="h-6 me-3 sm:h-7"
@@ -56,12 +87,14 @@ const SideBar = () => {
           </a>
           <ul className="space-y-2 font-medium">
             <li>
-              <Link to={"/"}><a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
-              >
-                <span className="ms-3">Dashboard</span>
-              </a></Link>
+              <Link to={"/"}>
+                <a
+                  href="#"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+                >
+                  <span className="ms-3">Dashboard</span>
+                </a>
+              </Link>
             </li>
             <li>
               <Link to={"/users"}>
@@ -119,7 +152,6 @@ const SideBar = () => {
             </li>
             <li>
               <Link to={"/photos"}>
-                {" "}
                 <a
                   href="#"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white dark:hover:bg-white group hover:shadow-xl hover:shadow-grey-400/70 transition-all duration-300"
@@ -137,43 +169,44 @@ const SideBar = () => {
               </Link>
             </li>
             <li>
-              <Link to={"/todos"}><a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white dark:hover:bg-white group hover:shadow-xl hover:shadow-grey-400/70 transition-all duration-300"
-              >
-                <div className="p-2 bg-white rounded-lg shadow-md hover:bg-blue-500 group-hover:bg-blue-500">
-                  <FaReact
-                    size={19}
-                    className="text-gray-500 group-hover:text-white"
-                  />
-                </div>
-                <span className="flex-1 ms-3 whitespace-nowrap text-gray-600">
-                  Todos
-                </span>
-              </a></Link>
+              <Link to={"/todos"}>
+                <a
+                  href="#"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white dark:hover:bg-white group hover:shadow-xl hover:shadow-grey-400/70 transition-all duration-300"
+                >
+                  <div className="p-2 bg-white rounded-lg shadow-md hover:bg-blue-500 group-hover:bg-blue-500">
+                    <FaReact
+                      size={19}
+                      className="text-gray-500 group-hover:text-white"
+                    />
+                  </div>
+                  <span className="flex-1 ms-3 whitespace-nowrap text-gray-600">
+                    Todos
+                  </span>
+                </a>
+              </Link>
             </li>
             <li>
               <Link to={"/albums"}>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white dark:hover:bg-white group hover:shadow-xl hover:shadow-grey-400/70 transition-all duration-300"
-              >
-                <div className="p-2 bg-white rounded-lg shadow-md hover:bg-blue-500 group-hover:bg-blue-500">
-                  <FaBuffer
-                    size={19}
-                    className="text-gray-500 group-hover:text-white"
-                  />
-                </div>
-                <span className="flex-1 ms-3 whitespace-nowrap text-gray-600">
-                  Albums
-                </span>
-              </a></Link>
+                <a
+                  href="#"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-white dark:hover:bg-white group hover:shadow-xl hover:shadow-grey-400/70 transition-all duration-300"
+                >
+                  <div className="p-2 bg-white rounded-lg shadow-md hover:bg-blue-500 group-hover:bg-blue-500">
+                    <FaBuffer
+                      size={19}
+                      className="text-gray-500 group-hover:text-white"
+                    />
+                  </div>
+                  <span className="flex-1 ms-3 whitespace-nowrap text-gray-600">
+                    Albums
+                  </span>
+                </a>
+              </Link>
             </li>
           </ul>
         </div>
       </aside>
-
-     
     </div>
   );
 };
