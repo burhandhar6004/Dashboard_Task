@@ -26,7 +26,7 @@ const App = () => {
             <Route path="/albums" element={<Albums/>}/>
             <Route path="/viewcomments/:id" element={<CommentSection/>}/>
             <Route path="/viewphotos/:id" element={<PhotoSection/>}/>
-            <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/" element={<Dashboard/>}/>
 
           </Routes>
         </div>

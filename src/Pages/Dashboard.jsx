@@ -1,5 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAlbums } from "../Features/albums/albumsSlice";
+import { fetchComments } from "../Features/comments/commentsSlice";
+import { fetchPhotos } from "../Features/photos/photosSlice";
+import { fetchPosts } from "../Features/posts/postsSlice";
+import { fetchTodos } from "../Features/todos/todosSlice";
+import { fetchUsers } from "../Features/Users/userSlice";
 
 const Dashboard = () => {
   const { users } = useSelector((state) => state.users);
@@ -8,6 +14,16 @@ const Dashboard = () => {
   const { todos } = useSelector((state) => state.todos);
   const { albums } = useSelector((state) => state.albums);
   const { photos } = useSelector((state) => state.photos);
+
+const dispatch = useDispatch()
+  useEffect(()=>{
+dispatch(fetchAlbums())
+dispatch(fetchComments())
+dispatch(fetchPhotos())
+dispatch(fetchPosts())
+dispatch(fetchTodos())
+dispatch(fetchUsers())
+  },[dispatch])
 
   return (
     <div className="">
