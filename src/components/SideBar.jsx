@@ -69,12 +69,12 @@ const SideBar = () => {
       <aside
         ref={sidebarRef}
         id="logo-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+        className={`fixed top-3 left-3 z-40 w-56 h-auto rounded-2xl  transition-transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="h-full px-3 py-4 overflow-y-auto rounded-2xl shadow-2xl border-l-green-800">
           <a className="flex items-center ps-2.5 mb-5">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
@@ -92,7 +92,7 @@ const SideBar = () => {
                   href="#"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
                 >
-                  <span className="ms-3">Dashboard</span>
+                  <span className="ms-3  text-gray-800 font-semibold">Dashboard</span>
                 </a>
               </Link>
             </li>
@@ -108,7 +108,7 @@ const SideBar = () => {
                       className="text-gray-500 group-hover:text-white"
                     />
                   </div>
-                  <span className="flex-1 ms-3 whitespace-nowrap text-gray-600">
+                  <span className="flex-1 ms-3 whitespace-nowrap text-gray-700 font-semibold">
                     Users
                   </span>
                 </a>
@@ -126,7 +126,7 @@ const SideBar = () => {
                       className="text-gray-500 group-hover:text-white"
                     />
                   </div>
-                  <span className="flex-1 ms-3 whitespace-nowrap text-gray-600">
+                  <span className="flex-1 ms-3 whitespace-nowrap  text-gray-700 font-semibold">
                     Posts
                   </span>
                 </a>
@@ -144,7 +144,7 @@ const SideBar = () => {
                       className="text-gray-500 group-hover:text-white"
                     />
                   </div>
-                  <span className="flex-1 ms-3 whitespace-nowrap text-gray-600">
+                  <span className="flex-1 ms-3 whitespace-nowrap  text-gray-700 font-semibold">
                     Comments
                   </span>
                 </a>
@@ -162,7 +162,7 @@ const SideBar = () => {
                       className="text-gray-500 group-hover:text-white"
                     />
                   </div>
-                  <span className="flex-1 ms-3 whitespace-nowrap text-gray-600">
+                  <span className="flex-1 ms-3 whitespace-nowrap  text-gray-700 font-semibold">
                     Photos
                   </span>
                 </a>
@@ -180,7 +180,7 @@ const SideBar = () => {
                       className="text-gray-500 group-hover:text-white"
                     />
                   </div>
-                  <span className="flex-1 ms-3 whitespace-nowrap text-gray-600">
+                  <span className="flex-1 ms-3 whitespace-nowrap  text-gray-700 font-semibold">
                     Todos
                   </span>
                 </a>
@@ -198,7 +198,7 @@ const SideBar = () => {
                       className="text-gray-500 group-hover:text-white"
                     />
                   </div>
-                  <span className="flex-1 ms-3 whitespace-nowrap text-gray-600">
+                  <span className="flex-1 ms-3 whitespace-nowrap  text-gray-700 font-semibold">
                     Albums
                   </span>
                 </a>

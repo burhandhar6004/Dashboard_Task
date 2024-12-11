@@ -13,9 +13,10 @@ import Dashboard from "./Pages/Dashboard";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <div >
+      <BrowserRouter >
       <SideBar />
-      <div className="p-1 sm:ml-64 flex">
+      <div className="p-1 sm:ml-64  flex">
         <div className="p-1 rounded-lg dark:border-gray-700 w-full">
           <Routes>
             <Route path="/users" element={<UsersTables />} />
@@ -32,6 +33,7 @@ const App = () => {
         </div>
       </div>
     </BrowserRouter>
+    </div>
   );
 };
 
